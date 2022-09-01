@@ -5,25 +5,11 @@
 * {
     box-sizing: border-box;
     font-family: inherit;
+    line-height: inherit;
     color: inherit;
-}
-
-html {
-    font-family: "Inter", sans-serif;
-}
-
-body,
-h1,
-p,
-button,
-span {
-    margin: 0;
     padding: 0;
-    border: none;
-}
-
-button {
-    touch-action: manipulation;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
 }
 
 /*------------------------------------*\
@@ -34,7 +20,6 @@ button {
     font-family: "Karla", sans-serif;
     font-size: 40px;
     letter-spacing: -1px;
-    line-height: 1;
     margin: 20px 10px;
 }
 
@@ -54,6 +39,7 @@ button {
 button {
     background-color: transparent;
     cursor: pointer;
+    border: none;
 }
 
 /*------------------------------------*\
@@ -61,19 +47,31 @@ button {
 \*------------------------------------*/
 
 body {
-    position: relative;
-    background: #1c1c1c;
-    min-height: 100vh;
-    color: #ffffff;
+    background: linear-gradient(
+        90deg,
+        rgba(71, 0, 255, 1) 0%,
+        rgba(199, 0, 255, 1) 100%
+    );
+    color: whitesmoke;
+    text-align: center;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    white-space: nowrap;
 }
 
-.landing {
-    background: #1f2937;
+.flip-wrapper {
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.landing,
+.resume-page,
+.quals-page,
+.service-page {
+    background-color: #1f2937;
     border-radius: 15px;
-    margin: 20px 0;
 }
 
 /* navbar */
@@ -94,8 +92,11 @@ body {
 }
 
 .dropdown-content {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
     position: absolute;
+    color: whitesmoke;
+    transition: visibility 0s, opacity 0.5s;
 }
 
 .material-symbols-outlined {
@@ -103,19 +104,20 @@ body {
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+    visibility: visible;
+    opacity: 1;
 }
 
 .dropdown-content button {
-    color: whitesmoke;
     padding: 10px;
     display: block;
     background-color: #282c34;
-    border: 0.1em solid white;
+    border: 0.1em solid whitesmoke;
 }
 
 .dropdown-content button:hover {
     background-color: #273549;
+    transform: scale(1.1);
 }
 
 /* FOOTER */
@@ -138,9 +140,25 @@ body {
     border-bottom: 5px solid rgb(166, 166, 230);
 }
 
-/* PDF */
+/* flip logic */
 
-.pdf {
-    min-width: 100vh;
-    min-height: 100vh;
+.flip {
+    position: absolute;
+    transition: transform 1s, opacity 1s;
+    backface-visibility: hidden;
+    opacity: 0;
+}
+
+.static {
+    transform: rotateY(0deg);
+    z-index: 1;
+    opacity: 1;
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
+.to-flip {
+    transform: rotateY(-180deg);
 }
