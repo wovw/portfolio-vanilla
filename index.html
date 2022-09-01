@@ -1,17 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anthony Pasala</title>
-    <link rel="stylesheet" type="text/css" href="style.css"></link>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Password Generator</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Karla:wght@800&display=swap"
+        rel="stylesheet">
+
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- Other icons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <script defer src="index.js"></script>
 </head>
+
 <body>
-    <h1>Anthony Pasala</h1> <!-- This is a comment! --> 
-    <p>Welcome to 315 at <a href="https://www.tamu.edu/">Texas A&M</a>!</p>
-    <p class="blue_overline_text">Blue paragraph</p>
-    <p id="red_underline_text">Red paragraph</p>
-    <a href="about.html">About</a>
+    <main>
+        <div class="flip-wrapper">
+            <div class="landing">
+                <nav class="navbar">
+                    <h1 class="nav--title">my landing page.</h1>
+                    <div class="dropdown">
+                        <button class="material-symbols-outlined">
+                            menu
+                        </button>
+                        <div class="dropdown-content">
+                            <button>about me.</button>
+                            <button>resume.</button>
+                            <button>qualifications.</button>
+                            <button>service.</button>
+                        </div>
+                    </div>
+                </nav>
+
+
+                <h1 class="title">about <span class="accent-text">me.</span></h1>
+
+                <p class="text">blah blah blah blah blah blah blah blah.</p>
+
+                <footer class="footer">
+                    <small>
+                        coded by
+                        <a class="footer--link" href="/" target="_blank">
+                            anthony pasala
+                            <span><i class="fa fa-github"></i></span>
+                        </a>
+                        .
+                    </small>
+                </footer>
+            </div>
+        </div>
+    </main>
+
 </body>
+
 </html>

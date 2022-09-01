@@ -1,3 +1,146 @@
-h1 {
-    color: blue; /* This is a comment! */
+/*------------------------------------*\
+  #BASE
+\*------------------------------------*/
+
+* {
+    box-sizing: border-box;
+    font-family: inherit;
+    color: inherit;
+}
+
+html {
+    font-family: "Inter", sans-serif;
+}
+
+body,
+h1,
+p,
+button,
+span {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+button {
+    touch-action: manipulation;
+}
+
+/*------------------------------------*\
+  #TYPOGRAPHY
+\*------------------------------------*/
+
+.title {
+    font-family: "Karla", sans-serif;
+    font-size: 40px;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin: 20px 10px;
+}
+
+.accent-text {
+    color: #4adf86;
+}
+
+.text {
+    font-size: 1.25rem;
+    margin: 20px 10px;
+}
+
+/*------------------------------------*\
+  #COMPONENTS
+\*------------------------------------*/
+
+button {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+/*------------------------------------*\
+  #LAYOUT
+\*------------------------------------*/
+
+body {
+    position: relative;
+    background: #1c1c1c;
+    min-height: 100vh;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing {
+    background: #1f2937;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+/* navbar */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 0.75em 1em;
+    color: #1d1d1c;
+    background-color: #f55a5a;
+    border-radius: 15px 15px 0 0;
+}
+
+.nav--title {
+    font-weight: 500;
+    letter-spacing: -0.075em;
+    margin-right: auto;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 48;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content button {
+    color: whitesmoke;
+    padding: 10px;
+    display: block;
+    background-color: #282c34;
+    border: 0.1em solid white;
+}
+
+.dropdown-content button:hover {
+    background-color: #273549;
+}
+
+/* FOOTER */
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75em 1em;
+    color: #1d1d1c;
+    background-color: #f55a5a;
+    border-radius: 0px 0px 15px 15px;
+}
+
+.footer--link {
+    text-decoration: none;
+}
+
+.footer--link:hover {
+    border-bottom: 5px solid rgb(166, 166, 230);
+}
+
+/* PDF */
+
+.pdf {
+    min-width: 100vh;
+    min-height: 100vh;
 }
