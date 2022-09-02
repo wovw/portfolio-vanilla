@@ -6,12 +6,12 @@ const servicePage = document.getElementById("service-page");
 const pages = document.querySelectorAll("div.page");
 
 const btnMap = {
-    about: "landing",
-    resume: "resume-page",
-    quals: "quals-page",
-    service: "service-page",
+    about: landingPage,
+    resume: resumePage,
+    quals: qualsPage,
+    service: servicePage,
 };
-let currentPage = "landing";
+let currentPage = landingPage;
 
 function flipClasses(element) {
     element.classList.add("static");
@@ -22,7 +22,7 @@ function flipClasses(element) {
         prevSiblings.push(prevSibling);
         prevSibling = prevSibling.previousElementSibling;
     }
-    prevSiblings.forEach(element => element.classList.add("flipped"));
+    prevSiblings.forEach((element) => element.classList.add("flipped"));
 
     let nextSiblings = [];
     let nextSibling = element.nextElementSibling;
@@ -30,39 +30,20 @@ function flipClasses(element) {
         nextSiblings.push(nextSibling);
         nextSibling = nextSibling.nextElementSibling;
     }
-    nextSiblings.forEach(element => element.classList.add("to-flip"));
+    nextSiblings.forEach((element) => element.classList.add("to-flip"));
 }
 
 function flipToPage(event) {
-    let pageName = btnMap[event.target.className];
-    if (currentPage === pageName) return;
+    let pageCard = btnMap[event.target.className];
+    if (currentPage === pageCard) return;
 
     pages.forEach((page) => {
         page.classList.remove("static");
         page.classList.remove("to-flip");
         page.classList.remove("flipped");
     });
-
-    switch (pageName) {
-        case "landing":
-            flipClasses(landingPage);
-            console.log(pageName);
-            break;
-        case "resume-page":
-            flipClasses(resumePage);
-            console.log(pageName);
-            break;
-        case "quals-page":
-            flipClasses(qualsPage);
-            console.log(pageName);
-            break;
-        case "service-page":
-            flipClasses(servicePage);
-            console.log(pageName);
-            break;
-    }
-
-    currentPage = pageName;
+    flipClasses(pageCard);
+    currentPage = pageCard;
 }
 
 menuBtns.forEach((button) => {

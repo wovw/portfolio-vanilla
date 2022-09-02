@@ -5,41 +5,30 @@
 * {
     box-sizing: border-box;
     font-family: inherit;
-    line-height: inherit;
     color: inherit;
+    border: none;
+}
+
+body,
+h1,
+p,
+button,
+footer,
+small,
+span,
+i {
     padding: 0;
     margin: 0;
-    font-family: 'Inter', sans-serif;
 }
 
-/*------------------------------------*\
-  #TYPOGRAPHY
-\*------------------------------------*/
-
-.title {
-    font-family: "Karla", sans-serif;
-    font-size: 40px;
-    letter-spacing: -1px;
-    margin: 20px 10px;
+html {
+    font-family: "Inter", sans-serif;
 }
-
-.accent-text {
-    color: #4adf86;
-}
-
-.text {
-    font-size: 1.25rem;
-    margin: 20px 10px;
-}
-
-/*------------------------------------*\
-  #COMPONENTS
-\*------------------------------------*/
 
 button {
     background-color: transparent;
     cursor: pointer;
-    border: none;
+    touch-action: manipulation;
 }
 
 /*------------------------------------*\
@@ -48,30 +37,46 @@ button {
 
 body {
     background: linear-gradient(
-        90deg,
-        rgba(71, 0, 255, 1) 0%,
-        rgba(199, 0, 255, 1) 100%
+        320deg,
+        rgba(0, 114, 255, 1) 0%,
+        rgba(219, 0, 249, 1) 50%,
+        rgba(255, 0, 0, 1) 100%
     );
+    position: relative;
+    min-height: 100vh;
     color: whitesmoke;
-    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    white-space: nowrap;
 }
 
 .flip-wrapper {
-    position: absolute;
     transform-style: preserve-3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10vh;
+    white-space: nowrap;
 }
 
-.landing,
-.resume-page,
-.quals-page,
-.service-page {
-    background-color: #1f2937;
-    border-radius: 15px;
+.content {
+    background-color: #273549;
+    padding: 20px;
+}
+
+.title {
+    font-family: "Karla", sans-serif;
+    font-size: 40px;
+    letter-spacing: -1px;
+}
+
+.accent-text {
+    color: #4adf86;
+}
+
+.text {
+    font-size: 1.25rem;
+    padding-top: 20px;
 }
 
 /* navbar */
@@ -87,7 +92,7 @@ body {
 
 .nav--title {
     font-weight: 500;
-    letter-spacing: -0.075em;
+    letter-spacing: -0.065em;
     margin-right: auto;
 }
 
@@ -138,6 +143,32 @@ body {
 
 .footer--link:hover {
     border-bottom: 5px solid rgb(166, 166, 230);
+}
+
+/* resume pdf */
+
+.pdf {
+    width: 55vw;
+    height: 50vh;
+}
+
+.download {
+    font-family: inconsolata;
+    text-decoration: none;
+    border: 1px solid #45d880;
+    width: 100%;
+    max-width: 20rem;
+    text-align: center;
+    display: block;
+    font-size: 1.375rem;
+    line-height: 2.4;
+    margin: 0 auto 20px auto;
+    transition: all 0.25s;
+}
+
+.download:hover {
+    color: #45d880;
+    background-color: whitesmoke;
 }
 
 /* flip logic */
