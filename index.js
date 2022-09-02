@@ -1,14 +1,13 @@
 const menuBtns = document.querySelectorAll("div.dropdown-content > button");
 const landingPage = document.getElementById("landing");
 const resumePage = document.getElementById("resume-page");
-const qualsPage = document.getElementById("quals-page");
 const servicePage = document.getElementById("service-page");
 const pages = document.querySelectorAll("div.page");
+const toggleBtn = document.getElementById("toggler--slider");
 
 const btnMap = {
     about: landingPage,
     resume: resumePage,
-    quals: qualsPage,
     service: servicePage,
 };
 let currentPage = landingPage;
@@ -48,4 +47,8 @@ function flipToPage(event) {
 
 menuBtns.forEach((button) => {
     button.addEventListener("click", flipToPage);
+});
+
+toggleBtn.addEventListener("click", () => {
+    console.log("clicked");
 });

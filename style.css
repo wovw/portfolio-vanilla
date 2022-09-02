@@ -7,16 +7,6 @@
     font-family: inherit;
     color: inherit;
     border: none;
-}
-
-body,
-h1,
-p,
-button,
-footer,
-small,
-span,
-i {
     padding: 0;
     margin: 0;
 }
@@ -36,12 +26,9 @@ button {
 \*------------------------------------*/
 
 body {
-    background: linear-gradient(
-        320deg,
-        rgba(0, 114, 255, 1) 0%,
-        rgba(219, 0, 249, 1) 50%,
-        rgba(255, 0, 0, 1) 100%
-    );
+    background-image: url(background.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     position: relative;
     min-height: 100vh;
     color: whitesmoke;
@@ -50,13 +37,18 @@ body {
     justify-content: center;
 }
 
-.flip-wrapper {
+.wrapper {
     transform-style: preserve-3d;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 10vh;
     white-space: nowrap;
+    box-shadow: 6px 9px 12px 0px rgba(0, 0, 0, 0.6);
+}
+
+.page {
+    /* TODO */
 }
 
 .content {
@@ -137,38 +129,16 @@ body {
     border-radius: 0px 0px 15px 15px;
 }
 
+.footer-text {
+    margin-right: auto;
+}
+
 .footer--link {
     text-decoration: none;
 }
 
 .footer--link:hover {
     border-bottom: 5px solid rgb(166, 166, 230);
-}
-
-/* resume pdf */
-
-.pdf {
-    width: 55vw;
-    height: 50vh;
-}
-
-.download {
-    font-family: inconsolata;
-    text-decoration: none;
-    border: 1px solid #45d880;
-    width: 100%;
-    max-width: 20rem;
-    text-align: center;
-    display: block;
-    font-size: 1.375rem;
-    line-height: 2.4;
-    margin: 0 auto 20px auto;
-    transition: all 0.25s;
-}
-
-.download:hover {
-    color: #45d880;
-    background-color: whitesmoke;
 }
 
 /* flip logic */
@@ -192,4 +162,76 @@ body {
 
 .to-flip {
     transform: rotateY(-180deg);
+}
+
+/* toggle button */
+
+.toggler {
+    display: flex;
+    align-items: center;
+    transition: all 0.1s;
+}
+
+#toggler--slider {
+    width: 25px;
+    height: 13px;
+    background-color: #2b283a;
+    border-radius: 2rem;
+    margin-inline: 7px;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid black;
+    box-sizing: content-box;
+}
+
+.toggler--slider--circle {
+    height: 13px;
+    width: 13px;
+    background-color: darkgray;
+    border-radius: 50%;
+}
+
+.toggler-image {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    color: whitesmoke;
+    transition: visibility 0s, opacity 0.1s;
+}
+
+.toggler:hover {
+    transform: scale(1.1);
+}
+
+.toggler:hover .toggler-image {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* landing page */
+
+/* TODO */
+
+/* resume page */
+
+.download {
+    font-family: inconsolata;
+    text-decoration: none;
+    border: 1px solid #45d880;
+    width: 20rem;
+    text-align: center;
+    display: block;
+    font-size: 1.375rem;
+    line-height: 2.4;
+    margin: 0 auto 20px auto;
+    transition: all 0.25s;
+}
+
+.download:hover {
+    color: #45d880;
+    background-color: whitesmoke;
 }
