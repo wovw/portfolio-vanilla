@@ -38,6 +38,10 @@ body {
     justify-content: center;
 }
 
+.preload {
+    overflow: hidden;
+}
+
 .wrapper {
     transform-style: preserve-3d;
     display: flex;
@@ -212,6 +216,62 @@ body {
 .toggler:hover .toggler-image {
     visibility: visible;
     opacity: 1;
+}
+
+/* loading logic */
+
+.load-wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: #242f3f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.flipping {
+    width: 40px;
+    height: 40px;
+    animation: diagonal 1.5s infinite forwards;
+    perspective: 168px;
+}
+
+.flipping:before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    animation: flipping 1.5s infinite forwards;
+    background-color: white;
+    transform-origin: bottom;
+}
+
+@keyframes diagonal {
+    0%,
+    50% {
+        transform: rotate(45deg);
+    }
+
+    50.000000001%,
+    100% {
+        transform: rotate(-45deg);
+    }
+}
+
+@keyframes flipping {
+    0% {
+        transform: translate(0, 0) rotateX(0deg);
+    }
+
+    50% {
+        transform: translate(0, -100%) rotateX(0deg);
+    }
+
+    100% {
+        transform: translate(0, -100%) rotateX(-180deg);
+    }
 }
 
 /* landing page */

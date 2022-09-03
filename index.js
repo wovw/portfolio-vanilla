@@ -1,10 +1,13 @@
+// DOM elements
 const menuBtns = document.querySelectorAll("div.dropdown-content > button");
 const landingPage = document.getElementById("landing");
 const resumePage = document.getElementById("resume-page");
 const servicePage = document.getElementById("service-page");
 const pages = document.querySelectorAll("div.page");
 const toggleBtn = document.getElementById("toggler--slider");
+const loaderWrapper = document.getElementsByClassName("load-wrapper");
 
+// initialize
 const btnMap = {
     about: landingPage,
     resume: resumePage,
@@ -12,6 +15,7 @@ const btnMap = {
 };
 let currentPage = landingPage;
 
+// functions
 function flipClasses(element) {
     element.classList.add("static");
 
@@ -45,6 +49,14 @@ function flipToPage(event) {
     currentPage = pageCard;
 }
 
+function loadPage() {
+    loaderWrapper[0].style.transition = "all 0.5s";
+    loaderWrapper[0].style.opacity = 0;
+    loaderWrapper[0].style.visibility = "hidden";
+    document.body.classList.remove("preload");
+}
+
+// event listeners
 menuBtns.forEach((button) => {
     button.addEventListener("click", flipToPage);
 });
@@ -52,3 +64,5 @@ menuBtns.forEach((button) => {
 toggleBtn.addEventListener("click", () => {
     console.log("clicked");
 });
+
+window.addEventListener("load", loadPage);
