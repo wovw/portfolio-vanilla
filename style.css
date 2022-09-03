@@ -26,9 +26,10 @@ button {
 \*------------------------------------*/
 
 body {
-    background-image: url(background.png);
+    background-image: url(./static/background.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-size: cover;
     position: relative;
     min-height: 100vh;
     color: whitesmoke;
@@ -48,11 +49,12 @@ body {
 }
 
 .page {
-    /* TODO */
+    background-color: #273549;
+    border-radius: 15px;
+    box-shadow: 10px 10px 0px 0px rgba(2, 7, 93, 0.75);
 }
 
 .content {
-    background-color: #273549;
     padding: 20px;
 }
 
@@ -189,7 +191,7 @@ body {
 .toggler--slider--circle {
     height: 13px;
     width: 13px;
-    background-color: darkgray;
+    background-color: lightgray;
     border-radius: 50%;
 }
 
