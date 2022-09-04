@@ -2,7 +2,6 @@
 <html>
 
 <head>
-    <meta http-equiv="Cache-control" content="no-cache">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Personal website</title>
@@ -25,15 +24,15 @@
     <script defer src="index.js"></script>
 </head>
 
-<body class="preload">
+<body class="preload layout1">
 
     <!-- Loading page -->
     <div class="load-wrapper">
         <span class="flipping"></span>
     </div>
 
-    <!-- layout 1 -->
-    <div id="layer2" class="wrapper">
+    <!-- layout -->
+    <div id="layer2" class="layout1-wrapper">
 
         <!-- Landing page -->
         <div id="landing" class="page flip static">
@@ -66,13 +65,12 @@
                     .
                 </small>
 
-                <div class="toggler">
+                <div id="toggler">
                     <div id="toggler--slider">
-                        <div class="toggler--slider--circle"></div>
+                        <div id="toggler--slider--circle"></div>
                     </div>
-                    <div class="toggler-image">
-                        <div class="material-symbols-outlined">
-                            north_west
+                    <div id="toggler-image">
+                        <div id="arrow">
                         </div>
                         Click me!
                     </div>
