@@ -3,9 +3,9 @@ const menuBtns = document.querySelectorAll("div.dropdown-content > button");
 const landingPage = document.getElementById("landing");
 const resumePage = document.getElementById("resume-page");
 const servicePage = document.getElementById("service-page");
+const qualsPage = document.getElementById("quals-page");
 const pages = document.querySelectorAll("div.page");
-const toggleBtnWrapper = document.getElementById("toggler");
-const toggleBtn = document.getElementById("toggler--slider");
+const toggleBtns = document.getElementsByClassName("toggler--slider"); //nodelist
 const loaderWrapper = document.querySelector("div.load-wrapper");
 const layoutBody = document.getElementById("layer2");
 const body = document.body;
@@ -13,15 +13,15 @@ const layoutBodyElms = layoutBody.getElementsByTagName("*"); // nodelist
 
 // initialize
 let layoutBodyElmsList = Array.prototype.slice.call(layoutBodyElms); // array, live
+let toggleBtnsList = Array.prototype.slice.call(toggleBtns); // array, live
 const btnMap = {
     about: landingPage,
     resume: resumePage,
     service: servicePage,
+    quals: qualsPage,
 };
 let currentPage = landingPage;
 let isLayout1 = true;
-let storeLayoutOne = [];
-let storeLayoutTwo = [];
 
 // functions
 function flipClasses(element) {
@@ -57,14 +57,12 @@ function flipToPage(event) {
     currentPage = pageCard;
 }
 
-function loadPage() {
+function loadSite() {
     loaderWrapper.style.transition = "all 0.5s";
     loaderWrapper.style.opacity = 0;
     loaderWrapper.style.visibility = "hidden";
     body.classList.remove("preload");
 }
-
-function loadPageHTML() {}
 
 function loadLayout1() {
     isLayout1 = true;
@@ -76,8 +74,8 @@ function loadLayout1() {
     // add layout1 styling
     body.classList.add("layout1");
     layoutBody.classList.add("layout1-wrapper");
-    storeLayoutOne = layoutBodyElmsList.map((element) => {
-        element.classList = [];
+    layoutBodyElmsList.map((element) => {
+        element.classList.remove("layout2");
         return element;
     });
 }
@@ -92,26 +90,30 @@ function loadLayout2() {
     // add layout2 styling
     body.classList.add("layout2");
     layoutBody.classList.add("layout2-wrapper");
-    storeLayoutTwo = layoutBodyElmsList.map((element) => {
-        element.classList = [];
+    layoutBodyElmsList.map((element) => {
+        element.classList.add("layout2");
         return element;
     });
 }
+
+// function addNavBar that adds element with class "navbar" to every Page object
 
 // event listeners
 menuBtns.forEach((button) => {
     button.addEventListener("click", flipToPage);
 });
 
-toggleBtn.addEventListener("click", () => {
-    body.classList.add("preload");
-    loaderWrapper.style.visibility = "visible";
-    loaderWrapper.style.opacity = 1;
-    setTimeout(() => {
-        if (isLayout1) loadLayout2();
-        else loadLayout1();
-        loadPage();
-    }, 1000);
+toggleBtnsList.forEach((button) => {
+    button.addEventListener("click", () => {
+        body.classList.add("preload");
+        loaderWrapper.style.visibility = "visible";
+        loaderWrapper.style.opacity = 1;
+        setTimeout(() => {
+            if (isLayout1) loadLayout2();
+            else loadLayout1();
+            loadSite();
+        }, 1000);
+    });
 });
 
-window.addEventListener("load", loadPage);
+window.addEventListener("load", loadSite);

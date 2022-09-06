@@ -100,13 +100,13 @@ button {
 
 /* toggle button */
 
-#toggler {
+.toggler {
     display: flex;
     align-items: center;
     transition: all 0.1s;
 }
 
-#toggler--slider {
+.toggler--slider {
     width: 25px;
     height: 13px;
     background-color: #2b283a;
@@ -120,14 +120,14 @@ button {
     box-sizing: content-box;
 }
 
-#toggler--slider--circle {
+.toggler--slider--circle {
     height: 13px;
     width: 13px;
     background-color: lightgray;
     border-radius: 50%;
 }
 
-#toggler-image {
+.toggler-image {
     visibility: hidden;
     opacity: 0;
     position: absolute;
@@ -137,16 +137,16 @@ button {
     transition: visibility 0s, opacity 0.1s;
 }
 
-#toggler:hover {
+.toggler:hover {
     transform: scale(1.1);
 }
 
-#toggler:hover #toggler-image {
+.toggler:hover .toggler-image {
     visibility: visible;
     opacity: 1;
 }
 
-#arrow {
+.arrow {
     width: 0;
     height: 0;
     position: relative;
@@ -297,10 +297,6 @@ button {
 .to-flip {
     transform: rotateY(-180deg);
 }
-
-/* landing page */
-
-/* TODO */
 
 /* resume page */
 
