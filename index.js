@@ -10,6 +10,7 @@ const loaderWrapper = document.querySelector("div.load-wrapper");
 const layoutBody = document.getElementById("layer2");
 const body = document.body;
 const layoutBodyElms = layoutBody.getElementsByTagName("*"); // nodelist
+const styleLink = document.getElementById("page_style");
 
 // initialize
 let layoutBodyElmsList = Array.prototype.slice.call(layoutBodyElms); // array, live
@@ -22,6 +23,7 @@ const btnMap = {
 };
 let currentPage = landingPage;
 let isLayout1 = true;
+let currentRotation = 0;
 
 // functions
 function flipClasses(element) {
@@ -44,8 +46,8 @@ function flipClasses(element) {
     nextSiblings.forEach((element) => element.classList.add("to-flip"));
 }
 
-function flipToPage(event) {
-    let pageCard = btnMap[event.target.className];
+function flipToPage(className) {
+    let pageCard = btnMap[className];
     if (currentPage === pageCard) return;
 
     pages.forEach((page) => {
@@ -64,41 +66,46 @@ function loadSite() {
     body.classList.remove("preload");
 }
 
+function rotateClasses(page) {
+    let newRotationString = window.getComputedStyle(page).rotate;
+    let newRotation = parseInt(
+        newRotationString.substring(2, newRotationString.length - 3)
+    );
+
+    layoutBody.style.rotate = `y ${0 - newRotation}deg`;
+    currentRotation = newRotation;
+}
+
+function rotateToPage(className) {
+    let pageCard = btnMap[className];
+    if (currentPage === pageCard) return;
+    rotateClasses(pageCard);
+    currentPage = pageCard;
+}
+
+function useFunction(event) {
+    isLayout1
+        ? flipToPage(event.target.className)
+        : rotateToPage(event.target.className);
+}
+
 function loadLayout1() {
     isLayout1 = true;
-
-    // remove layout2 styling
-    body.classList.remove("layout2");
-    layoutBody.classList.remove("layout2-wrapper");
-
-    // add layout1 styling
-    body.classList.add("layout1");
-    layoutBody.classList.add("layout1-wrapper");
-    layoutBodyElmsList.map((element) => {
-        element.classList.remove("layout2");
-        return element;
-    });
+    currentRotation = 0;
+    rotateToPage("about");
+    styleLink.setAttribute("href", "style.css");
 }
 
 function loadLayout2() {
     isLayout1 = false;
-
-    // remove layout1 styling
-    body.classList.remove("layout1");
-    layoutBody.classList.remove("layout1-wrapper");
-
-    // add layout2 styling
-    body.classList.add("layout2-body");
-    layoutBody.classList.add("layout2-wrapper");
-    layoutBodyElmsList.map((element) => {
-        element.classList.add("layout2");
-        return element;
-    });
+    currentRotation = 0;
+    flipToPage("about");
+    styleLink.setAttribute("href", "style2.css");
 }
 
 // event listeners
 menuBtns.forEach((button) => {
-    button.addEventListener("click", flipToPage);
+    button.addEventListener("click", useFunction);
 });
 
 toggleBtnsList.forEach((button) => {
@@ -107,9 +114,10 @@ toggleBtnsList.forEach((button) => {
         loaderWrapper.style.visibility = "visible";
         loaderWrapper.style.opacity = 1;
         setTimeout(() => {
-            if (isLayout1) loadLayout2();
-            else loadLayout1();
-            loadSite();
+            isLayout1 ? loadLayout2() : loadLayout1();
+            setTimeout(() => {
+                loadSite();
+            }, 500)
         }, 1000);
     });
 });

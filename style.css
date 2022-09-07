@@ -161,7 +161,7 @@ button {
   LAYOUT 1
 \*------------------------------------*/
 
-.layout1 {
+.layout {
     background-image: url(./static/background.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -169,7 +169,7 @@ button {
     color: whitesmoke;
 }
 
-.layout1-wrapper {
+.layout-wrapper {
     transform-style: preserve-3d;
     display: flex;
     align-items: center;
@@ -222,6 +222,8 @@ button {
     margin-right: auto;
 }
 
+/* dropdown menu */
+
 .dropdown-content {
     visibility: hidden;
     opacity: 0;
@@ -247,7 +249,7 @@ button {
     transform: scale(1.1);
 }
 
-/* FOOTER */
+/* footer */
 
 .footer {
     display: flex;
@@ -310,162 +312,6 @@ button {
 }
 
 .download:hover {
-    color: #45d880;
-    background-color: whitesmoke;
-}
-
-/*------------------------------------*\
-  LAYOUT 2
-\*------------------------------------*/
-
-.layout2-body {
-    background-image: url(./static/background.png);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    color: whitesmoke;
-}
-
-.layout2-wrapper {
-    transform-style: preserve-3d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10vh;
-    white-space: nowrap;
-    box-shadow: 6px 9px 12px 0px rgba(0, 0, 0, 0.6);
-}
-
-.page.layout2 {
-    background-color: #273549;
-    border-radius: 15px;
-    box-shadow: 10px 10px 0px 0px rgba(2, 7, 93, 0.75);
-}
-
-.content.layout2 {
-    padding: 20px;
-}
-
-.title.layout2 {
-    font-family: "Karla", sans-serif;
-    font-size: 40px;
-    letter-spacing: -1px;
-}
-
-.accent-text.layout2 {
-    color: #4adf86;
-}
-
-.text.layout2 {
-    font-size: 1.25rem;
-    padding-top: 20px;
-}
-
-/* navbar */
-
-.navbar.layout2 {
-    /* position: sticky ??? */
-    display: flex;
-    align-items: center;
-    padding: 0.75em 1em;
-    color: #1d1d1c;
-    background-color: #f55a5a;
-    border-radius: 15px 15px 0 0;
-}
-
-.nav--title.layout2 {
-    font-weight: 500;
-    letter-spacing: -0.065em;
-    margin-right: auto;
-}
-
-.dropdown-content.layout2 {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    color: whitesmoke;
-    transition: visibility 0s, opacity 0.5s;
-}
-
-.dropdown:hover .dropdown-content.layout2 {
-    visibility: visible;
-    opacity: 1;
-}
-
-.dropdown-content.layout2 button {
-    padding: 10px;
-    display: block;
-    background-color: #282c34;
-    border: 0.1em solid whitesmoke;
-}
-
-.dropdown-content.layout2 button:hover {
-    background-color: #273549;
-    transform: scale(1.1);
-}
-
-/* FOOTER */
-
-.footer.layout2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75em 1em;
-    color: #1d1d1c;
-    background-color: #f55a5a;
-    border-radius: 0px 0px 15px 15px;
-}
-
-.footer-text.layout2 {
-    margin-right: auto;
-}
-
-.footer--link.layout2 {
-    text-decoration: none;
-}
-.layout2.footer--link:hover {
-    border-bottom: 5px solid rgb(166, 166, 230);
-}
-
-/* flip logic */
-
-.flip.layout2 {
-    position: absolute;
-    transition: transform 1s, opacity 1s;
-    backface-visibility: hidden;
-    opacity: 0;
-}
-
-.static.layout2 {
-    transform: rotateY(0deg);
-    z-index: 1;
-    opacity: 1;
-}
-
-.flipped.layout2 {
-    transform: rotateY(180deg);
-}
-
-.to-flip.layout2 {
-    transform: rotateY(-180deg);
-}
-
-/* resume page */
-
-.download.layout2 {
-    font-family: inconsolata;
-    text-decoration: none;
-    border: 1px solid #45d880;
-    width: 20rem;
-    text-align: center;
-    display: block;
-    font-size: 1.375rem;
-    line-height: 2.4;
-    margin: 0 auto 20px auto;
-    transition: all 0.25s;
-}
-
-.layout2.download:hover {
     color: #45d880;
     background-color: whitesmoke;
 }
