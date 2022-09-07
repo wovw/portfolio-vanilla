@@ -88,15 +88,13 @@ function loadLayout2() {
     layoutBody.classList.remove("layout1-wrapper");
 
     // add layout2 styling
-    body.classList.add("layout2");
+    body.classList.add("layout2-body");
     layoutBody.classList.add("layout2-wrapper");
     layoutBodyElmsList.map((element) => {
         element.classList.add("layout2");
         return element;
     });
 }
-
-// function addNavBar that adds element with class "navbar" to every Page object
 
 // event listeners
 menuBtns.forEach((button) => {
