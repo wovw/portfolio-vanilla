@@ -9,11 +9,9 @@ const toggleBtns = document.getElementsByClassName("toggler--slider"); //nodelis
 const loaderWrapper = document.querySelector("div.load-wrapper");
 const layoutBody = document.getElementById("layer2");
 const body = document.body;
-const layoutBodyElms = layoutBody.getElementsByTagName("*"); // nodelist
-const styleLink = document.getElementById("page_style");
+const cssStyleLink = document.getElementById("page_style");
 
 // initialize
-let layoutBodyElmsList = Array.prototype.slice.call(layoutBodyElms); // array, live
 let toggleBtnsList = Array.prototype.slice.call(toggleBtns); // array, live
 const btnMap = {
     about: landingPage,
@@ -93,14 +91,26 @@ function loadLayout1() {
     isLayout1 = true;
     currentRotation = 0;
     rotateToPage("about");
-    styleLink.setAttribute("href", "style.css");
+
+    body.classList.add("layout-body");
+    body.classList.remove("layout2-body");
+    layoutBody.classList.remove("layout2");
+    layoutBody.classList.add("layout");
+
+    // cssStyleLink.href = "style.css";
 }
 
 function loadLayout2() {
     isLayout1 = false;
     currentRotation = 0;
     flipToPage("about");
-    styleLink.setAttribute("href", "style2.css");
+
+    body.classList.remove("layout-body");
+    body.classList.add("layout2-body");
+    layoutBody.classList.remove("layout");
+    layoutBody.classList.add("layout2");
+
+    // cssStyleLink.href = "style2.css";
 }
 
 // event listeners
@@ -117,8 +127,8 @@ toggleBtnsList.forEach((button) => {
             isLayout1 ? loadLayout2() : loadLayout1();
             setTimeout(() => {
                 loadSite();
-            }, 500)
-        }, 1000);
+            }, 750);
+        }, 500);
     });
 });
 

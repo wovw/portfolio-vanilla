@@ -2,6 +2,10 @@
   BASE
 \*------------------------------------*/
 
+:root {
+    --card-width: 450px;
+}
+
 * {
     box-sizing: border-box;
     font-family: inherit;
@@ -9,10 +13,6 @@
     border: none;
     padding: 0;
     margin: 0;
-}
-
-html {
-    font-family: "Inter", sans-serif;
 }
 
 body {
@@ -27,7 +27,7 @@ body {
   COMPONENTS
 \*------------------------------------*/
 
-button {
+.layout button {
     background-color: transparent;
     cursor: pointer;
     touch-action: manipulation;
@@ -98,15 +98,15 @@ button {
     }
 }
 
-/* toggle button */
+/* layout 1 toggle button */
 
-.toggler {
+.layout .toggler {
     display: flex;
     align-items: center;
     transition: all 0.1s;
 }
 
-.toggler--slider {
+.layout .toggler--slider {
     width: 25px;
     height: 13px;
     background-color: #2b283a;
@@ -120,14 +120,14 @@ button {
     box-sizing: content-box;
 }
 
-.toggler--slider--circle {
+.layout .toggler--slider--circle {
     height: 13px;
     width: 13px;
     background-color: lightgray;
     border-radius: 50%;
 }
 
-.toggler-image {
+.layout .toggler-image {
     visibility: hidden;
     opacity: 0;
     position: absolute;
@@ -137,16 +137,16 @@ button {
     transition: visibility 0s, opacity 0.1s;
 }
 
-.toggler:hover {
+.layout .toggler:hover {
     transform: scale(1.1);
 }
 
-.toggler:hover .toggler-image {
+.layout .toggler:hover .toggler-image {
     visibility: visible;
     opacity: 1;
 }
 
-.arrow {
+.layout .arrow {
     width: 0;
     height: 0;
     position: relative;
@@ -157,19 +157,79 @@ button {
     border-color: #ffffff transparent transparent transparent;
 }
 
+/* layout 2 toggle button */
+
+.layout2 .toggler {
+    display: flex;
+    align-items: center;
+    transition: all 0.1s;
+    margin-right: 3vh;
+}
+
+.layout2 .toggler--slider {
+    width: 25px;
+    height: 13px;
+    background-color: #800000;
+    border-radius: 2rem;
+    margin-inline: 7px;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid black;
+    box-sizing: content-box;
+}
+
+.layout2 .toggler--slider--circle {
+    height: 13px;
+    width: 13px;
+    background-color: lightgray;
+    border-radius: 50%;
+}
+
+.layout2 .toggler-image {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    transition: visibility 0s, opacity 0.1s;
+}
+
+.layout2 .toggler:hover {
+    transform: scale(1.1);
+}
+
+.layout2 .toggler:hover .toggler-image {
+    visibility: visible;
+    opacity: 1;
+}
+
+.layout2 .arrow {
+    width: 0;
+    height: 0;
+    position: relative;
+    top: 5px;
+    right: 5px;
+    border-style: solid;
+    border-width: 10px 10px 0 0;
+    border-color: #800000 transparent transparent transparent;
+}
+
 /*------------------------------------*\
   LAYOUT 1
 \*------------------------------------*/
 
-.layout {
+.layout-body {
     background-image: url(./static/background.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     color: whitesmoke;
+    font-family: "Inter", sans-serif;
 }
 
-.layout-wrapper {
+.layout {
     transform-style: preserve-3d;
     display: flex;
     align-items: center;
@@ -179,34 +239,34 @@ button {
     box-shadow: 6px 9px 12px 0px rgba(0, 0, 0, 0.6);
 }
 
-.page {
+.layout .page {
     background-color: #273549;
     border-radius: 15px;
     box-shadow: 10px 10px 0px 0px rgba(2, 7, 93, 0.75);
 }
 
-.content {
+.layout .content {
     padding: 20px;
 }
 
-.title {
+.layout .title {
     font-family: "Karla", sans-serif;
     font-size: 40px;
     letter-spacing: -1px;
 }
 
-.accent-text {
+.layout .accent-text {
     color: #4adf86;
 }
 
-.text {
+.layout .text {
     font-size: 1.25rem;
     padding-top: 20px;
 }
 
 /* navbar */
 
-.navbar {
+.layout .navbar {
     /* position: sticky ??? */
     display: flex;
     align-items: center;
@@ -216,7 +276,7 @@ button {
     border-radius: 15px 15px 0 0;
 }
 
-.nav--title {
+.layout .nav--title {
     font-weight: 500;
     letter-spacing: -0.065em;
     margin-right: auto;
@@ -224,7 +284,7 @@ button {
 
 /* dropdown menu */
 
-.dropdown-content {
+.layout .dropdown-content {
     visibility: hidden;
     opacity: 0;
     position: absolute;
@@ -232,26 +292,26 @@ button {
     transition: visibility 0s, opacity 0.5s;
 }
 
-.dropdown:hover .dropdown-content {
+.layout .dropdown:hover .dropdown-content {
     visibility: visible;
     opacity: 1;
 }
 
-.dropdown-content button {
+.layout .dropdown-content button {
     padding: 10px;
     display: block;
     background-color: #282c34;
     border: 0.1em solid whitesmoke;
 }
 
-.dropdown-content button:hover {
+.layout .dropdown-content button:hover {
     background-color: #273549;
     transform: scale(1.1);
 }
 
 /* footer */
 
-.footer {
+.layout .footer {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -261,44 +321,44 @@ button {
     border-radius: 0px 0px 15px 15px;
 }
 
-.footer-text {
+.layout .footer-text {
     margin-right: auto;
 }
 
-.footer--link {
+.layout .footer--link {
     text-decoration: none;
 }
 
-.footer--link:hover {
+.layout .footer--link:hover {
     border-bottom: 5px solid rgb(166, 166, 230);
 }
 
 /* flip logic */
 
-.flip {
+.layout .flip {
     position: absolute;
     transition: transform 1s, opacity 1s;
     backface-visibility: hidden;
     opacity: 0;
 }
 
-.static {
+.layout .static {
     transform: rotateY(0deg);
     z-index: 1;
     opacity: 1;
 }
 
-.flipped {
+.layout .flipped {
     transform: rotateY(180deg);
 }
 
-.to-flip {
+.layout .to-flip {
     transform: rotateY(-180deg);
 }
 
 /* resume page */
 
-.download {
+.layout .download {
     font-family: inconsolata;
     text-decoration: none;
     border: 1px solid #45d880;
@@ -311,7 +371,183 @@ button {
     transition: all 0.25s;
 }
 
-.download:hover {
+.layout .download:hover {
     color: #45d880;
     background-color: whitesmoke;
+}
+
+/*------------------------------------*\
+  LAYOUT 2
+\*------------------------------------*/
+
+.layout2-body {
+    background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(255, 229, 168, 1) 0%, rgba(251, 174, 222, 1) 100.7%);
+    color: #800000;
+    font-family: 'Exo 2', sans-serif;
+}
+
+
+.layout2 {
+    transform-style: preserve-3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+    white-space: nowrap;
+}
+
+.layout2 .page {
+    position: absolute;
+    width: var(--card-width);
+    height: 450px;
+    /* TODO: edit */
+    padding: 35px 20px;
+    transition: all 0.5s;
+    transform: translateZ(calc(var(--card-width)/2));
+    backface-visibility: hidden;
+    background-color: #FAD961;
+}
+
+.layout2 #landing {
+    background-image: linear-gradient(90deg, #FAD961 0%, #F76B1C 100%);
+    rotate: y 0deg;
+    border-radius: 35px 5px 35px 0;
+}
+
+.layout2 #resume-page {
+    background-image: linear-gradient(90deg, #F76B1C 0%, #FAD961 100%);
+    rotate: y 90deg;
+    border-radius: 0 35px 5px 35px;
+}
+
+.layout2 #quals-page {
+    background-image: linear-gradient(90deg, #FAD961 0%, #F76B1C 100%);
+    rotate: y 180deg;
+    border-radius: 35px 5px 35px 0;
+}
+
+.layout2 #service-page {
+    background-image: linear-gradient(90deg, #F76B1C 0%, #FAD961 100%);
+    rotate: y 270deg;
+    border-radius: 0 35px 5px 35px;
+}
+
+.layout2 h1,
+.layout2 h2 {
+    margin: 0;
+    font-size: 40px;
+    transform: translateX(-47px);
+    font-family: 'Sarala';
+    font-weight: 500;
+}
+
+.layout2 h2 {
+    font-size: 20px;
+    transform: translateX(-35px);
+}
+
+.layout2 p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* navbar */
+
+.layout2 .navbar {
+    display: flex;
+    align-items: center;
+}
+
+.layout2 .nav--title {
+    margin-right: auto;
+}
+
+/* dropdown menu */
+
+.layout2 .dropdown-content {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.layout2:hover .dropdown>button {
+    transform: scale(1) skewY(0);
+}
+
+
+.layout2 .dropdown:hover .dropdown-content>button {
+    transform: scale(1) skewY(0);
+}
+
+.layout2 .dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+.layout2 .dropdown button {
+    display: block;
+    border: 0.1em solid #800000;
+    cursor: pointer;
+    color: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 20px 55px 55px 55px;
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    background-size: 125% 100%;
+    background-position: right;
+    transform: scale(0) skewY(20deg);
+    transition: all 100ms;
+    transform-origin: left top;
+}
+
+.layout2 .dropdown button:hover {
+    background-position: left;
+}
+
+/* footer */
+
+.layout2 .footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--card-width);
+    padding: 0.75em 1em;
+    border-radius: 0px 0px 15px 15px;
+}
+
+.layout2 .footer-text {
+    margin-right: auto;
+}
+
+.layout2 .footer--link {
+    text-decoration: none;
+}
+
+.layout2 .footer--link:hover {
+    border-bottom: 5px solid rgb(166, 166, 230);
+}
+
+/* resume page */
+
+.layout2 .download {
+    font-family: inconsolata;
+    text-decoration: none;
+    border: 2px solid #800000;
+    width: 20rem;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.375rem;
+    line-height: 2.4;
+    margin: 10px 0;
+    transition: all 0.25s;
+}
+
+.layout2 .download:hover {
+    color: #f55a5a;
+    background-color: #800000;
+    border: 2px solid #f55a5a;
 }
