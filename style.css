@@ -23,6 +23,10 @@ body {
     justify-content: center;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /*------------------------------------*\
   COMPONENTS
 \*------------------------------------*/
@@ -549,7 +553,8 @@ body {
     font-size: 20px;
     position: sticky;
     top: 0;
-    translate: -33px 0 0;
+    transform: translateX(-33px);
+    transition: all 0.1s;
 }
 
 .layout2 .content {
@@ -560,7 +565,6 @@ body {
     position: relative;
     padding-left: 250px;
     margin-left: -250px;
-
 }
 
 .layout2 .text {
@@ -570,7 +574,7 @@ body {
 .layout2 p {
     text-align: justify;
     font-size: 1.2rem;
-    padding-top: 20px;
+    padding-top: 15px;
 }
 
 .layout2 .tf-img {

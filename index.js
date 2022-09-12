@@ -13,7 +13,7 @@ const cssStyleLink = document.getElementById("page_style");
 
 // initialize
 let toggleBtnsList = Array.prototype.slice.call(toggleBtns); // array, live
-let menuBtnsList = Array.prototype.slice.call(menuBtns);
+let menuBtnsList = Array.prototype.slice.call(menuBtns); // live
 const btnToPageMap = {
     about: landingPage,
     resume: resumePage,
@@ -28,7 +28,6 @@ const pageToBtnMap = {
 };
 let currentPage = landingPage;
 let isLayout1 = true;
-let scrollContents = [];
 
 // functions
 function flipClasses(element) {
@@ -97,9 +96,10 @@ function rotateToPage(className) {
         page.style.setProperty("z-index", "0");
         page.style.setProperty("z-index", "0");
     });
-
     rotateClasses(pageCard);
     currentPage = pageCard;
+
+    scrollObserver();
 }
 
 function useFunction(event) {
@@ -111,13 +111,13 @@ function useFunction(event) {
 function loadLayout1() {
     isLayout1 = true;
     rotateToPage("about");
-    scrollContents = [];
+    titles = [];
+    observer.disconnect();
 
     body.classList.remove("layout2-body");
     body.classList.add("layout-body");
     layoutBody.classList.remove("layout2");
     layoutBody.classList.add("layout");
-
     localStorage.setItem("layout", "1");
 }
 
@@ -129,28 +129,10 @@ function loadLayout2() {
     body.classList.add("layout2-body");
     layoutBody.classList.remove("layout");
     layoutBody.classList.add("layout2");
-
     localStorage.setItem("layout", "2");
 
-/*     let titlesList = [];
-    scrollContents = document.querySelectorAll(".layout2 .content");
-    scrollContents.forEach((content) => {
-        children = Array.prototype.slice.call(content.children);
-        children.forEach((child) => {
-            if (child.className === "title") {
-                titlesList.push(child);
-            }
-        });
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-        console.log(entries);
-    });
-
-    titlesList.forEach((title) => {
-        observer.observe(title);
-    });
- */}
+    scrollObserver();
+}
 
 // event listeners
 menuBtns.forEach((button) => {
@@ -192,20 +174,72 @@ window.addEventListener("load", () => {
     }, 500);
 });
 
-// function moveTitle(time) {
-//     if (time) {
-//         let diff = time - number;
-//         console.log("frame", diff);
-//         number = time;
-//     }
-//     xpos = xpos + 5;
-//     box.style.transform = `translateX(${xpos}px)`;
-//     let ww = document.body.clientWidth - 100;
-//     if (xpos < ww) {
-//         requestAnimationFrame(moveTitle);
-//     }
-// }
+// intersection observer
+let translate = 0;
+let titles = [];
+let options = {
+    root: landingPage.querySelectorAll(".layout2 .content"),
+    rootMargin: "-35px 0px 0px 0px",
+    threshold: 1,
+};
+let observer = new IntersectionObserver(() => {}, {});
 
-// window.requestAnimationFrame(moveTitle);
+function scrollSelector() {
+    let rootMarginY = -35;
+    let scrollParagraph = currentPage.querySelector(".layout2 .text");
+    titles = currentPage.querySelectorAll(".layout2 .title");
 
-//mdn scrollTop;
+    switch (currentPage) {
+        case landingPage:
+            rootMarginY = -200;
+            scrollParagraph = currentPage.querySelector(".layout2 .text");
+            translate = -65;
+            break;
+        case resumePage:
+            rootMarginY = -110;
+            scrollParagraph = currentPage.querySelector(".layout2 .text > p");
+            translate = -90;
+            break;
+        case qualsPage:
+            rootMarginY = -240;
+            scrollParagraph = currentPage.querySelector(".layout2 .text");
+            translate = -90;
+            break;
+        case servicePage:
+            rootMarginY = -155;
+            scrollParagraph = currentPage.querySelector(".layout2 .text > p");
+            translate = -130;
+            break;
+    }
+
+    return { rootMarginY, scrollParagraph };
+}
+
+function slideTitles(entries, observer) {
+    entries.forEach((entry) => {
+        console.log(entry);
+        titles.forEach((title) => {
+            if (!entry.isIntersecting) {
+                title.style.setProperty("translate", `${translate}px 0 0`);
+                if (titles.length > 1)
+                    titles[1].style.setProperty("top", "20px");
+            } else {
+                title.style.setProperty("translate", "0 0 0");
+                if (titles.length > 1)
+                    titles[1].style.setProperty("top", "0px");
+            }
+        });
+    });
+}
+
+function scrollObserver() {
+    observer.disconnect();
+    let { rootMarginY, scrollParagraph } = scrollSelector();
+    observer = new IntersectionObserver(slideTitles, {
+        root: currentPage.querySelector(".layout2 .content"),
+        rootMargin: `${rootMarginY}px 0px 0px 0px`,
+        threshhold: 1,
+    });
+
+    observer.observe(scrollParagraph);
+}
