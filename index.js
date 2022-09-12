@@ -13,19 +13,27 @@ const cssStyleLink = document.getElementById("page_style");
 
 // initialize
 let toggleBtnsList = Array.prototype.slice.call(toggleBtns); // array, live
-const btnMap = {
+let menuBtnsList = Array.prototype.slice.call(menuBtns);
+const btnToPageMap = {
     about: landingPage,
     resume: resumePage,
-    service: servicePage,
     quals: qualsPage,
+    service: servicePage,
+};
+const pageToBtnMap = {
+    landing: "about",
+    "resume-page": "resume",
+    "quals-page": "quals",
+    "service-page": "service",
 };
 let currentPage = landingPage;
 let isLayout1 = true;
-let currentRotation = 0;
+let scrollContents = [];
 
 // functions
 function flipClasses(element) {
     element.classList.add("static");
+    element.style.setProperty("z-index", "1");
 
     let prevSiblings = [];
     let prevSibling = element.previousElementSibling;
@@ -33,7 +41,10 @@ function flipClasses(element) {
         prevSiblings.push(prevSibling);
         prevSibling = prevSibling.previousElementSibling;
     }
-    prevSiblings.forEach((element) => element.classList.add("flipped"));
+    prevSiblings.forEach((element) => {
+        element.classList.add("flipped");
+        element.style.setProperty("z-index", "0");
+    });
 
     let nextSiblings = [];
     let nextSibling = element.nextElementSibling;
@@ -41,12 +52,14 @@ function flipClasses(element) {
         nextSiblings.push(nextSibling);
         nextSibling = nextSibling.nextElementSibling;
     }
-    nextSiblings.forEach((element) => element.classList.add("to-flip"));
+    nextSiblings.forEach((element) => {
+        element.classList.add("to-flip");
+        element.style.setProperty("z-index", "0");
+    });
 }
 
 function flipToPage(className) {
-    let pageCard = btnMap[className];
-    if (currentPage === pageCard) return;
+    let pageCard = btnToPageMap[className];
 
     pages.forEach((page) => {
         page.classList.remove("static");
@@ -65,18 +78,26 @@ function loadSite() {
 }
 
 function rotateClasses(page) {
-    let newRotationString = window.getComputedStyle(page).rotate;
+    let newRotationString = window
+        .getComputedStyle(page)
+        .getPropertyValue("rotate");
     let newRotation = parseInt(
         newRotationString.substring(2, newRotationString.length - 3)
     );
 
-    layoutBody.style.rotate = `y ${0 - newRotation}deg`;
-    currentRotation = newRotation;
+    page.style.setProperty("z-index", "1");
+    layoutBody.style.setProperty("rotate", `y ${0 - newRotation}deg`);
 }
 
 function rotateToPage(className) {
-    let pageCard = btnMap[className];
-    if (currentPage === pageCard) return;
+    let pageCard = btnToPageMap[className];
+
+    pages.forEach((page) => {
+        page.style.setProperty("z-index", "0");
+        page.style.setProperty("z-index", "0");
+        page.style.setProperty("z-index", "0");
+    });
+
     rotateClasses(pageCard);
     currentPage = pageCard;
 }
@@ -89,20 +110,19 @@ function useFunction(event) {
 
 function loadLayout1() {
     isLayout1 = true;
-    currentRotation = 0;
     rotateToPage("about");
+    scrollContents = [];
 
-    body.classList.add("layout-body");
     body.classList.remove("layout2-body");
+    body.classList.add("layout-body");
     layoutBody.classList.remove("layout2");
     layoutBody.classList.add("layout");
 
-    // cssStyleLink.href = "style.css";
+    localStorage.setItem("layout", "1");
 }
 
 function loadLayout2() {
     isLayout1 = false;
-    currentRotation = 0;
     flipToPage("about");
 
     body.classList.remove("layout-body");
@@ -110,8 +130,27 @@ function loadLayout2() {
     layoutBody.classList.remove("layout");
     layoutBody.classList.add("layout2");
 
-    // cssStyleLink.href = "style2.css";
-}
+    localStorage.setItem("layout", "2");
+
+/*     let titlesList = [];
+    scrollContents = document.querySelectorAll(".layout2 .content");
+    scrollContents.forEach((content) => {
+        children = Array.prototype.slice.call(content.children);
+        children.forEach((child) => {
+            if (child.className === "title") {
+                titlesList.push(child);
+            }
+        });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        console.log(entries);
+    });
+
+    titlesList.forEach((title) => {
+        observer.observe(title);
+    });
+ */}
 
 // event listeners
 menuBtns.forEach((button) => {
@@ -120,16 +159,53 @@ menuBtns.forEach((button) => {
 
 toggleBtnsList.forEach((button) => {
     button.addEventListener("click", () => {
+        let oldPage = currentPage;
+
         body.classList.add("preload");
         loaderWrapper.style.visibility = "visible";
         loaderWrapper.style.opacity = 1;
+
         setTimeout(() => {
-            isLayout1 ? loadLayout2() : loadLayout1();
-            setTimeout(() => {
-                loadSite();
-            }, 750);
+            if (isLayout1) {
+                loadLayout2();
+            } else loadLayout1();
         }, 500);
+        setTimeout(() => {
+            rotateToPage(pageToBtnMap[oldPage.id]);
+            flipToPage(pageToBtnMap[oldPage.id]);
+        }, 1050);
+        setTimeout(() => {
+            loadSite();
+        }, 1500);
     });
 });
 
-window.addEventListener("load", loadSite);
+window.addEventListener("load", () => {
+    let layoutStyle = localStorage.getItem("layout");
+
+    if (layoutStyle && layoutStyle === "2") {
+        loadLayout2();
+    }
+
+    setTimeout(() => {
+        loadSite();
+    }, 500);
+});
+
+// function moveTitle(time) {
+//     if (time) {
+//         let diff = time - number;
+//         console.log("frame", diff);
+//         number = time;
+//     }
+//     xpos = xpos + 5;
+//     box.style.transform = `translateX(${xpos}px)`;
+//     let ww = document.body.clientWidth - 100;
+//     if (xpos < ww) {
+//         requestAnimationFrame(moveTitle);
+//     }
+// }
+
+// window.requestAnimationFrame(moveTitle);
+
+//mdn scrollTop;
