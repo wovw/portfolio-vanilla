@@ -4,6 +4,7 @@
 
 :root {
     --card-width: 600px;
+    --y-translate: -50%;
 }
 
 * {
@@ -13,6 +14,7 @@
     border: none;
     padding: 0;
     margin: 0;
+    outline: 0;
 }
 
 body {
@@ -66,7 +68,7 @@ html {
 }
 
 .flipping:before {
-    content: '';
+    content: "";
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -314,7 +316,7 @@ html {
 }
 
 .layout .content {
-    max-height: 75vh;
+    height: 75vh;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgb(166, 166, 230) transparent;
@@ -343,6 +345,12 @@ html {
     margin-left: 20px;
 }
 
+.layout .nhs-img {
+    float: right;
+    width: 40%;
+    margin-left: 20px;
+}
+
 .layout .build-img {
     float: left;
     width: 41%;
@@ -359,6 +367,10 @@ html {
     margin: 0 0 10px 20px;
 }
 
+#service-page .content .text p {
+    margin-bottom: 15px;
+}
+
 .layout .text>figure {
     display: flex;
     align-items: center;
@@ -369,12 +381,12 @@ html {
     padding-top: 15px;
 }
 
-.layout ul {
+.layout .skills-list {
     padding: 0 30px;
     list-style-type: armenian;
 }
 
-.layout li {
+.layout .skills-list li {
     font-size: 1.25rem;
     padding-top: 15px;
 }
@@ -384,7 +396,7 @@ html {
 .layout .download {
     font-family: inconsolata;
     text-decoration: none;
-    border: 1px solid #45d880;
+    border: 1px solid #4adf86;
     width: 20rem;
     text-align: center;
     display: block;
@@ -395,7 +407,7 @@ html {
 }
 
 .layout .download:hover {
-    color: #45d880;
+    color: #4adf86;
     background-color: whitesmoke;
 }
 
@@ -448,37 +460,92 @@ html {
 
 /* contact form */
 
-.layout .input-label::before,
-.layout .input-label::after {
+.layout #contact {
+    padding: 0 20px 20px 20px;
+    color: #1d1d1c;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 50px 50px minmax(150px, auto) 50px;
+    grid-gap: 10px;
+    justify-content: center;
+}
+
+.layout .input-field {
+    width: 100%;
+    height: 100%;
+    background: rgb(83, 83, 126);
+    border: none;
+    outline: none;
+    padding: 1rem;
+    color: whitesmoke;
+    font-size: 1rem;
+}
+
+.layout .input-field::placeholder {
+    color: lightgray;
+    font-size: 1rem;
+}
+
+.layout .input-subject {
+    grid-column: span 2;
+}
+
+.layout .input-message {
+    grid-column: span 2;
+}
+
+.layout .input-field[name="message"] {
+    min-height: 150px;
+    resize: vertical;
+    
+}
+
+.layout .input-name,
+.layout .input-email,
+.layout .input-subject,
+.layout .input-message {
+    position: relative;
+    overflow: hidden;
+}
+
+.layout .input-bar {
+    color: transparent;
+}
+
+.layout .input-bar:after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 1px
-}
-
-.layout .input-label::after {
-    margin-top: 2px;
-    border-bottom: 2px solid #08FDD8;
-    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+    border-bottom: 2px solid #4adf86;
+    transform: translateX(-100%);
     transition: transform 0.3s;
 }
 
-.layout .input-field:focus+.input-label::after,
-.layout .input--filled .input-label::after {
-    transform: translate3d(0, 0, 0);
+.layout .input-field:focus+.input-bar::after {
+    transform: translateX(0);
 }
 
-.layout .required .input-field+.input-label::after,
-.layout .required .input--filled .input-label::after {
-    transform: translate3d(0, 0, 0);
-    border-color: red
+.layout .required+.input-bar::after {
+    transform: translateX(0);
+    border-color: red;
 }
 
-.layout .input-field:focus+.input-label .input__label-content--hoshi,
-.layout .input--filled .input__label-content--hoshi {
-    animation: anim-1 0.3s forwards;
+.layout .submit {
+    grid-column: 2 / 3;
+    margin-left: 25%;
+    font-family: inconsolata;
+    text-decoration: none;
+    border: 1px solid #4adf86;
+    font-size: 1.375rem;
+    transition: all 0.25s;
+    color: #4adf86;
+}
+
+.layout .submit:hover {
+    background-color: whitesmoke;
 }
 
 /*------------------------------------*\
@@ -486,12 +553,14 @@ html {
 \*------------------------------------*/
 
 .layout2-body {
-    background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(255, 229, 168, 1) 0%, rgba(251, 174, 222, 1) 100.7%);
+    background-image: radial-gradient(circle farthest-corner at 10% 20%,
+            rgba(255, 229, 168, 1) 0%,
+            rgba(251, 174, 222, 1) 100.7%);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     color: #800000;
-    font-family: 'Exo 2', sans-serif;
+    font-family: "Exo 2", sans-serif;
 }
 
 .layout2 {
@@ -506,33 +575,33 @@ html {
     position: absolute;
     width: var(--card-width);
     transition: all 0.5s;
-    transform: translateZ(calc(var(--card-width)/2));
+    transform: translateZ(calc(var(--card-width) / 2));
     backface-visibility: hidden;
-    background-color: #FAD961;
+    background-color: #fad961;
     display: flex;
     flex-direction: column;
 }
 
 .layout2 #landing {
-    background-image: linear-gradient(90deg, #FAD961 0%, #F76B1C 100%);
+    background-image: linear-gradient(90deg, #fad961 0%, #f76b1c 100%);
     rotate: y 0deg;
     border-radius: 35px 5px 35px 0;
 }
 
 .layout2 #resume-page {
-    background-image: linear-gradient(90deg, #F76B1C 0%, #FAD961 100%);
+    background-image: linear-gradient(90deg, #f76b1c 0%, #fad961 100%);
     rotate: y 90deg;
     border-radius: 0 35px 5px 35px;
 }
 
 .layout2 #quals-page {
-    background-image: linear-gradient(90deg, #FAD961 0%, #F76B1C 100%);
+    background-image: linear-gradient(90deg, #fad961 0%, #f76b1c 100%);
     rotate: y 180deg;
     border-radius: 35px 5px 35px 0;
 }
 
 .layout2 #service-page {
-    background-image: linear-gradient(90deg, #F76B1C 0%, #FAD961 100%);
+    background-image: linear-gradient(90deg, #f76b1c 0%, #fad961 100%);
     rotate: y 270deg;
     border-radius: 0 35px 5px 35px;
 }
@@ -543,12 +612,12 @@ html {
     margin: 0;
     font-size: 40px;
     transform: translateX(-47px);
-    font-family: 'Sarala';
+    font-family: "Sarala";
     font-weight: 500;
 }
 
 .layout2 .title {
-    font-family: 'Sarala';
+    font-family: "Sarala";
     font-weight: 500;
     font-size: 20px;
     position: sticky;
@@ -558,7 +627,7 @@ html {
 }
 
 .layout2 .content {
-    max-height: 75vh;
+    height: 75vh;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgb(166, 166, 230) transparent;
@@ -594,6 +663,12 @@ html {
     margin: 0 10px 5px 0;
 }
 
+.layout2 .nhs-img {
+    float: left;
+    width: 40%;
+    margin-right: 20px;
+}
+
 .layout2 .build-img {
     float: right;
     width: 41%;
@@ -602,15 +677,15 @@ html {
 .layout2 p>a {
     display: contents;
     color: #00ffff;
-    text-shadow: 2px 2px #0093E9;
+    text-shadow: 2px 2px #0093e9;
 }
 
-.layout2 ul {
+.layout2 .skills-list {
     padding: 0 30px;
     list-style-type: georgian;
 }
 
-.layout2 li {
+.layout2 .skills-list li {
     font-size: 1.25rem;
     padding-top: 15px;
 }
@@ -650,7 +725,6 @@ html {
     transform: scale(1) skewY(0);
 }
 
-
 .layout2 .dropdown:hover .dropdown-content>button {
     transform: scale(1) skewY(0);
 }
@@ -669,17 +743,15 @@ html {
     font-weight: 700;
     padding: 10px 20px;
     border-radius: 20px 55px 55px 55px;
-    background-color: #0093E9;
-    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
-    background-size: 125% 100%;
-    background-position: right;
+    background: linear-gradient(to top right, #0093e9 0%, #00ffe1 100%);
     transform: scale(0) skewY(20deg);
     transition: all 100ms;
     transform-origin: left top;
 }
 
 .layout2 .dropdown button:hover {
-    background-position: left;
+    animation: grad 0.075s ease-in;
+    background: linear-gradient(to top right, #00ffe1 0%, #0093e9 100%);
 }
 
 /* footer */
@@ -712,17 +784,147 @@ html {
     font-family: inconsolata;
     text-decoration: none;
     border: 2px solid #800000;
+    border-radius: 0 25px;
     width: 20rem;
     text-align: center;
     display: inline-block;
     font-size: 1.375rem;
     line-height: 2.4;
     margin: 10px 20px;
+    background: linear-gradient(to top right, #0093e9 0%, #00ffe1 100%);
     transition: all 0.25s;
 }
 
 .layout2 .download:hover {
-    color: #f55a5a;
-    background-color: #800000;
-    border: 2px solid #f55a5a;
+    animation: grad 0.075s ease-in;
+    background: linear-gradient(to top right, #00ffe1 0%, #0093e9 100%);
+}
+
+@keyframes grad {
+    0% {
+        background: linear-gradient(to top right, #0093e9 0%, #00ffe1 100%);
+    }
+    25% {
+        background: linear-gradient(to right top, #00ffe1, #00dbfe, #00c7ff, #00b1f9, #00b1f9, #00b1f9, #00b1f9, #00c7ff, #00dbfe, #00eef3, #00ffe1, #00ffe1);
+    }
+    50% {
+        background: linear-gradient(to right top, #00ffe1, #00eef3, #00dbfe, #00c7ff, #00b1f9, #00b1f9, #00b1f9, #00b1f9, #00c7ff, #00dbfe, #00eef3, #00ffe1);
+    }
+    75% {
+        background: linear-gradient(to right top, #00ffe1, #00ffe1, #00dbfe, #00c7ff, #00b1f9, #00b1f9, #00b1f9, #00b1f9, #00c7ff, #00dbfe, #00eef3, #00ffe1);
+    }
+
+    100% { 
+        background: linear-gradient(center, #00ffe1 0%, #0093e9 50%, #00ffe1 100%);
+    }
+}
+
+/* contact form */
+
+.layout2 #contact {
+    color: #1d1d1c;
+    display: grid;
+    grid-template-rows: 50px 50px 50px minmax(150px, auto) 50px;
+    grid-gap: 20px;
+    margin: 20px 50px 0 50px;
+}
+
+.layout2 .input-field {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(90deg, #f76b1c 0%, #fad961 100%);
+    border-radius: 0 25px;
+    outline: none;
+    padding: 1rem;
+    color: #800000;
+    font-size: 1rem;
+}
+
+.layout2 .input-name,
+.layout2 .input-email,
+.layout2 .input-subject,
+.layout2 .input-message {
+    grid-column: span 2;
+    position: relative;
+    border: 2px solid #800000;
+    border-radius: 0 25px;
+}
+
+.layout2 .input-field[name="message"] {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.layout2 .input-field::placeholder {
+    opacity: 0;
+}
+
+.layout2 .input-bar {
+    content: '';
+    position: absolute;
+    top: 7.5px;
+    left: 1rem;
+    background-image: linear-gradient(90deg, #fad961 0%, #f76b1c 100%);
+    border: 1px solid #800000;
+    border-radius: 1rem;
+    padding: 5px;
+    transform: translateY(0%);
+    transition: all 0.3s;
+}
+
+.layout2 .input-field:focus+.input-bar {
+    transform: translateY(-80%);
+}
+
+
+.layout2 .input-field:not(:placeholder-shown)+.input-bar {
+    transform: translateY(-80%);
+}
+
+.layout2 .required+.input-bar {
+    animation: shake 0.8s;
+    transform: translate3d(0, -80%, 0);
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translate3d(-1px, -80%, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, -80%, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, -80%, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, -80%, 0);
+    }
+}
+
+.layout2 .submit {
+    grid-column: span 2;
+    margin: 0px 25%;
+    font-family: inconsolata;
+    text-decoration: none;
+    border: 1px solid #800000;
+    border-radius: 0 25px;
+    font-size: 1.375rem;
+    transition: all 0.25s;
+    color: #800000;
+    background: linear-gradient(to top right, #0093e9 0%, #00ffe1 100%);
+    cursor: pointer;
+}
+
+.layout2 .submit:hover {
+    animation: grad 0.075s ease-in;
+    background: linear-gradient(to top right, #00ffe1 0%, #0093e9 100%);
 }
