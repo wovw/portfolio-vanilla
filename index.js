@@ -166,6 +166,7 @@ toggleBtnsList.forEach((button) => {
 	});
 });
 
+// read from localStorage
 window.addEventListener("load", () => {
 	let layoutStyle = localStorage.getItem("layout");
 
@@ -178,7 +179,7 @@ window.addEventListener("load", () => {
 	}, 500);
 });
 
-// intersection observer
+// intersection observer for scroll animation
 let translate = 0;
 let titles = [];
 let options = {
@@ -210,7 +211,7 @@ function scrollSelector() {
 			translate = -90;
 			break;
 		case servicePage:
-			rootMarginY = -155;
+			rootMarginY = -240;
 			scrollParagraph = currentPage.querySelector(".layout2 .text > p");
 			translate = -130;
 			break;
@@ -221,6 +222,7 @@ function scrollSelector() {
 
 function slideTitles(entries) {
 	entries.forEach((entry) => {
+		console.log(entry);
 		titles.forEach((title) => {
 			if (!entry.isIntersecting) {
 				title.style.setProperty("translate", `${translate}px 0 0`);
