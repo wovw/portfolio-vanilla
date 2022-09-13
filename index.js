@@ -222,14 +222,15 @@ function scrollSelector() {
 
 function slideTitles(entries) {
 	entries.forEach((entry) => {
-		console.log(entry);
 		titles.forEach((title) => {
 			if (!entry.isIntersecting) {
 				title.style.setProperty("translate", `${translate}px 0 0`);
-				if (titles.length > 1) titles[1].style.setProperty("top", "25px");
+				if (titles.length > 1)
+					titles[1].style.setProperty("top", "25px");
 			} else {
 				title.style.setProperty("translate", "0 0 0");
-				if (titles.length > 1) titles[1].style.setProperty("top", "0px");
+				if (titles.length > 1)
+					titles[1].style.setProperty("top", "0px");
 			}
 		});
 	});
@@ -282,6 +283,7 @@ function checkInputs() {
 	const messageVal = message.value.trim();
 	let accept = true;
 
+	document.documentElement.style.setProperty("--border-bottom-color", "red");
 	if (emailVal === "") {
 		email.classList.add("required");
 		accept = false;
@@ -298,6 +300,12 @@ function checkInputs() {
 	setTimeout(() => {
 		email.classList.remove("required");
 		message.classList.remove("required");
+		setTimeout(() => {
+			document.documentElement.style.setProperty(
+				"--border-bottom-color",
+				"#4adf86"
+			);
+		}, 301);
 	}, 1100);
 
 	return accept;
