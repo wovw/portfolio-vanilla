@@ -111,7 +111,6 @@ function useFunction(event) {
 function loadLayout1() {
 	isLayout1 = true;
 	rotateToPage("about");
-	titles = [];
 	observer.disconnect();
 
 	body.classList.remove("layout2-body");
@@ -120,6 +119,7 @@ function loadLayout1() {
 	layoutBody.classList.add("layout");
 	localStorage.setItem("layout", "1");
 
+	slideTitlesForOne();
 	removeInputBarText();
 }
 
@@ -190,7 +190,7 @@ let options = {
 let observer = new IntersectionObserver(() => {}, {});
 
 function scrollSelector() {
-	let rootMarginY = -35;
+	let rootMarginY = 0;
 	let scrollParagraph = currentPage.querySelector(".layout2 .text");
 	titles = currentPage.querySelectorAll(".layout2 .title");
 
@@ -246,6 +246,17 @@ function scrollObserver() {
 	});
 
 	observer.observe(scrollParagraph);
+}
+
+/**
+ * Slide back titles for first layout page
+ */
+function slideTitlesForOne() {
+	titles = document.querySelectorAll(".layout .title");
+	titles.forEach((title) => {
+		title.style.setProperty("translate", `0 0 0`);
+		if (titles.length > 1) titles[1].style.setProperty("top", "0");
+	});
 }
 
 // contact form
