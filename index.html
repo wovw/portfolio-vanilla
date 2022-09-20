@@ -1,9 +1,24 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Personal website</title>
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="static/apple-touch-icon.png" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="static/favicon-32x32.png" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="static/favicon-16x16.png" />
+		<link rel="manifest" href="static/site.webmanifest" />
+		<title>Anthony Pasala</title>
 
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -62,8 +77,8 @@
 					<div class="text">
 						<p>
 							Howdy! <br />
-							I'm Anthony Pasala, a computer science major
-							from Houston, TX. I mainly practice software/web
+							I'm Anthony Pasala, a computer science major from
+							Houston, TX. I mainly practice software/web
 							development, but I'm hoping for
 							<a href="https://i.am.ai/roadmap/" target="_blank"
 								>a career</a
@@ -79,11 +94,10 @@
 					</h2>
 					<form
 						id="contact"
-						action="mailto:anthonyp1@tamu.edu"
-						method="post"
+						action="https://formsubmit.co/37ae95f81bb3df43227dfacf10a5d99d"
 						target="_blank"
-						novalidate
-						enctype="text/plain">
+						method="POST">
+						<input type="hidden" name="_template" value="table" />
 						<div class="input-name">
 							<input
 								class="input-field"
@@ -108,7 +122,7 @@
 								placeholder="Subject"
 								autocomplete="off"
 								type="text"
-								name="subject" />
+								name="_subject" />
 							<div class="input-bar">subject</div>
 						</div>
 						<div class="input-message">

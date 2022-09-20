@@ -279,7 +279,7 @@ function addInputBarText() {
 const form = document.getElementById("contact");
 const name = document.getElementsByName("name")[0];
 const email = document.getElementsByName("email")[0];
-const subject = document.getElementsByName("subject")[0];
+const subject = document.getElementsByName("_subject")[0];
 const message = document.getElementsByName("message")[0];
 
 form.addEventListener("submit", (e) => {
@@ -292,20 +292,20 @@ const isEmail = (email) => emailExp.test(email);
 function checkInputs() {
 	const emailVal = email.value.trim();
 	const messageVal = message.value.trim();
-	let accept = true;
+	let isAccepted = true;
 
 	document.documentElement.style.setProperty("--border-bottom-color", "red");
 	if (emailVal === "") {
 		email.classList.add("required");
-		accept = false;
+		isAccepted = false;
 	} else if (!isEmail(emailVal)) {
 		email.classList.add("required");
-		accept = false;
+		isAccepted = false;
 	}
 
 	if (messageVal === "") {
 		message.classList.add("required");
-		accept = false;
+		isAccepted = false;
 	}
 
 	setTimeout(() => {
@@ -319,5 +319,5 @@ function checkInputs() {
 		}, 301);
 	}, 1100);
 
-	return accept;
+	return isAccepted;
 }
